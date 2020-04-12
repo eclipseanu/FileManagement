@@ -6,20 +6,28 @@ namespace FileManagement.Tests
     [TestFixture]
     public class MonitoredFileTests
     {
-        public string EXISTING_FILE_PATH = @"C:\Users\jason\Documents\Github\FileManagement\ExampleDirectory";
+        public string EXISTING_RELATIVE_FILE_PATH = @"C:\Users\Jason Storey\Desktop\GITHUB\FileManagement\ExampleDirectory\ExampleFile.txt";
+
+        private MonitoredFile _file;
+        [SetUp]
+        public void Setup() => _file = new MonitoredFile();
+
         [Test]
-        public void Check_Non_Existent_File_Does_Not_Throw()
+        public void Checking_Unassigned_File_Should_Not_Exist()
         {
-            var file = new MonitoredFile();
-            file.Check();
+            _file.Check();
+            _file.Exists.Should().BeFalse();
+            
         }
 
         [Test]
-        public void Set_Path()
+        public void Checking_Existing_File_Should_Exist()
         {
-            var file = new MonitoredFile();
-            file.Path = EXISTING_FILE_PATH;
-            file.Path.Should().Be(EXISTING_FILE_PATH);
+            _file.Path = EXISTING_RELATIVE_FILE_PATH;
+            _file.Check();
+            
+            _file.Path.Should().Be(EXISTING_RELATIVE_FILE_PATH);
+            _file.Exists.Should().BeTrue();
         }
         
     }
