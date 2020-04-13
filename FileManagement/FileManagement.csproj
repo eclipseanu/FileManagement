@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilePath.cs" />
     <Compile Include="MonitoredFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
